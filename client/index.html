@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+  />
+    <script type="module" src="./scripts/app.js"></script>
+    <title>DnD Campaign Tracker</title>
+</head>
+<body>
+    <div id="message-container"></div>
+    <div id="index-player-container"></div>
+    <div id="show-player-container"></div>
+    <form id="create-player-form">
+        <input type="text" name="name" placeholder="name">
+        <input type="text" name="position" placeholder="position">
+        <input type="text" name="birthplace" placeholder="birthplace">
+        <input type="number" name="yearsBorn" placeholder="yearsBorn">
+        <input type="number" name="playerId" placeholder="playerId">
+        <input type="submit" value="Create Player">
+    </form>
+
+    <div id="message-container"></div>
+    <div id="index-battingStats-container"></div>
+    <div id="show-battingStats-container"></div>
+    <form id="create-battingStats-form">
+        <input type="text" name="name" placeholder="name">
+        <input type="number" name="average" placeholder="average">
+        <input type="number" name="homerun" placeholder="homerun">
+        <input type="number" name="average" placeholder="average">
+        <input type="number" name="rbi" placeholder="rbi">
+        <input type="number" name="playId" placeholder="playerId">
+        <input type="submit" value="Create Batting Stats">
+    </form>
+
+    <div id="message-container"></div>
+    <div id="index-pitchingStats-container"></div>
+    <div id="show-pitchingStats-container"></div>
+    <form id="create-pitchingStats-form">
+        <input type="text" name="name" placeholder="name">
+        <input type="number" name="win" placeholder="win">
+        <input type="number" name="loss" placeholder="loss">
+        <input type="number" name="era" placeholder="era">
+        <input type="number" name="playId" placeholder="playerId">
+        <input type="submit" value="Create Pitching Stats">
+    </form>
+</body>
+</html>
