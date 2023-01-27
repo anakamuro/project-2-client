@@ -1,0 +1,23 @@
+ #create-player-form, #create-battingStats-form,  #create-pitchingStats-form{
+    display: flex;
+    flex-direction: column;
+    background-color: Blue;
+}
+
+input {
+    height: 100px;
+    width: 80%;
+    margin: 0 auto;
+    font-size: 40px;
+}
+
+h3 {
+    font-size: 40px;
+    color: white;
+    margin: 0 auto;
+    padding-top: 5%;
+}
+
+.delete {
+    height: 80px;
+}

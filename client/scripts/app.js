@@ -1,4 +1,4 @@
-import { indexPlayer, createPlayer, showPlayer, updatePlayer, deletePlayer, indexBattingStats, createBattingStats, showBattingStats, updateBattingStats, deleteBattingStats, indexPitchingStats, createPitchingStats, showPitchingStats, updatePitchingStats, deletePitchingStats } from './api.js'
+import { indexPlayer, createPlayer, showPlayer, updatePlayer, deletePlayer, indexBattingStats, createBattingStats, showBattingStats, updateBattingStats, deleteBattingStats, indexPitchingStats, createPitchingStats, showPitchingStats, updatePitchingStats, deletePitchingStats, signin, signup } from './api.js'
 import {
 	onIndexPlayerSuccess,
     onIndexBattingStatsSuccess,
@@ -17,7 +17,8 @@ import {
 	onDeleteBattingStatsSuccess,
     onDeletePitchingStatsSuccess,
 } from './ui.js'
-
+const createSigninForm = document.querySelector('#signin-form')
+const createSignupForm = document.querySelector('#signup-form')
 const createPlayerForm = document.querySelector('#create-player-form')
 const createBattingStatsForm = document.querySelector('#create-battingStats-form')
 const createPitchingStatsForm = document.querySelector('#create-pitchingStats-form')
@@ -71,6 +72,39 @@ createPlayerForm.addEventListener('submit', (event) => {
 			.then(onCreatePlayerSuccess)
 			.catch(onFailure)
 })
+
+createSigninForm.addEventListener('submit', (event) => {
+    event.preventDefault()
+
+    const signinData = {
+			signin: {
+				email: event.target['email'].value,
+				password: event.target['password'].value
+			},
+		}
+
+    // console.log(characterData)
+    signin(signinData)
+			.then(onCreatePlayerSuccess)
+			.catch(onFailure)
+})
+
+createSignupForm.addEventListener('submit', (event) => {
+    event.preventDefault()
+
+    const signupData = {
+			signup: {
+				email: event.target['email'].value,
+				password: event.target['password'].value
+			},
+		}
+
+    // console.log(characterData)
+    signup(signupData)
+			.then(onCreatePlayerSuccess)
+			.catch(onFailure)
+})
+
 
 createBattingStatsForm.addEventListener('submit', (event) => {
     event.preventDefault()

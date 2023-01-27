@@ -34,6 +34,28 @@ export const createBattingStats = (data) => {
     })
 }
 
+export const signin = (data) => {
+    return fetch(`http://localhost:8000/signin`, {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+}
+
+export const signup = (data) => {
+    return fetch(`http://localhost:8000/signin`, {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+}
+
 export const createPitchingStats = (data) => {
     return fetch(`http://localhost:8000/pitching-stats`, {
         method: 'POST',

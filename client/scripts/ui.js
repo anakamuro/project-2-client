@@ -65,7 +65,8 @@ export const onCreatePitchingStatsSuccess = () => {
 export const onShowPlayerSuccess = (player) => {
     const div = document.createElement('div')
     div.innerHTML = `
-        <h3>${player.name}  ${player.position}</h3>
+        <p>${player.name}</p>
+        <p>${player.position}</p>
         <p>${player.birthplace}</p>
         <p>${player.yearsBorn}</p>
         <p>${player._id}</p>
@@ -78,7 +79,7 @@ export const onShowPlayerSuccess = (player) => {
             <input type="submit" value="Update Player" />
         </form>
 
-        <button type="button" data-id="${player._id}">Delete Player</button>
+        <button class="delete" type="button" data-id="${player._id}">Delete Player</button>
     `
     showPlayerContainer.appendChild(div)
 }
@@ -86,10 +87,12 @@ export const onShowPlayerSuccess = (player) => {
 export const onShowBattingStatsSuccess = (battingStats) => {
     const div = document.createElement('div')
     div.innerHTML = `
-        <h3>${battingStats.name}  ${battingStats.average}</h3>
-        <p>${battingStats.homerun}</p>
-        <p>${battingStats.rbi}</p>
-        <p>${battingStats._id}</p>
+    <p>>${battingStats.name}</p> 
+    <p>${battingStats.average}</p>>
+    <p>${battingStats.homerun}</p>
+    <p>${battingStats.rbi}</p>
+    <p>${battingStats._id}</p>
+      
 
         <form data-id="${battingStats._id}">
             <input type="text" name="name" value="${battingStats.name}" />
