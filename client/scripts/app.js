@@ -187,41 +187,6 @@ createPitchingStatsForm.addEventListener('submit', (event) => {
 })
 
 
-indexPlayerContainer.addEventListener('click', (event) => {
-	const id = event.target.getAttribute('data-id')
-	// console.log(id)
-
-	if (!id) return
-
-	showPlayer(id)
-		.then((res) => res.json())
-		.then((res) => onShowPlayerSuccess(res.player))
-		.catch(onFailure)
-})
-
-indexBattingStatsContainer.addEventListener('click', (event) => {
-	const id = event.target.getAttribute('data-id')
-	// console.log(id)
-
-	if (!id) return
-
-	showBattingStats(id)
-		.then((res) => res.json())
-		.then((res) => onShowBattingStatsSuccess(res.battingStats))
-		.catch(onFailure)
-})
-
-indexPitchingStatsContainer.addEventListener('click', (event) => {
-	const id = event.target.getAttribute('data-id')
-	// console.log(id)
-
-	if (!id) return
-
-	showPitchingStats(id)
-		.then((res) => res.json())
-		.then((res) => onShowPitchingStatsSuccess(res.pitchingStats))
-		.catch(onFailure)
-})
 
 showPlayerContainer.addEventListener('submit', (event) => {
 	event.preventDefault()

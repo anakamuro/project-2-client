@@ -93,7 +93,7 @@ export const onShowPlayerSuccess = (player) => {
         </form>
 
         <button class="delete" type="button" data-id="${player._id}">Delete Player</button>
-        <button  id="add-note-button" type="button" class="btn btn-primary" data-id="${campaign._id}">Add Campaign Note</button>
+        <button  id="add-note-button" type="button" class="btn btn-primary" data-id="${player._id}">Add Player Stats</button>
         </div>
         </div>
     `

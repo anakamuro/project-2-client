@@ -2,12 +2,12 @@ import { store } from './store.js'
 
 
 export const indexPlayer = () => {
-    return fetch(`http://localhost:8000/players`), {
+    return fetch(`http://localhost:8000/players`)
         /*
         headers: {
             'Authorization': `Bearer ${store.userToken}`,
         }*/
-    }
+    
 }
 
 export const indexBattingStats = () => {
