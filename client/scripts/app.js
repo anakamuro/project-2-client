@@ -157,7 +157,8 @@ createBattingStatsForm.addEventListener('submit', (event) => {
 			name: event.target['name'].value,
 			homerun: event.target['homerun'].value,
 			rbi: event.target['rbi'].value,
-			playerId: store.currentPlayereId, 
+			playerId: store.currentPlayerId, 
+		//    playerId: event.target['playerId']
 		//	image: event.target['image'].value
 		},
 	}
@@ -176,7 +177,8 @@ createPitchingStatsForm.addEventListener('submit', (event) => {
 			name: event.target['name'].value,
 			win: event.target['win'].value,
 			loss: event.target['loss'].value,
-			playerId: store.currentPlayereId, 
+			playerId: store.currentPlayerId, 
+			//playerId: event.target['playerId'].value
 		},
 	}
 
