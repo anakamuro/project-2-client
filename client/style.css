@@ -21,3 +21,43 @@ h3 {
 .delete {
     height: 80px;
 }
+
+main {
+    margin: 5px;
+}
+
+.hide {
+    display: none;
+}
+
+.content-container{
+    display: flex;
+    height: 250px;
+}
+
+.content-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-basis: 33%;
+    flex-direction: column;
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    text-decoration: none;
+    height: 70px;
+  }
+  li a {
+    text-decoration: none;
+    color: white;
+  }
+
+  nav {
+    background-color: black;
+  }

@@ -1,21 +1,24 @@
-import { indexPlayer, createPlayer, showPlayer, updatePlayer, deletePlayer, indexBattingStats, createBattingStats, showBattingStats, updateBattingStats, deleteBattingStats, indexPitchingStats, createPitchingStats, showPitchingStats, updatePitchingStats, deletePitchingStats, signin, signup } from './api.js'
+import {  createPlayer, showPlayer, updatePlayer, deletePlayer, createBattingStats, showBattingStats, updateBattingStats, deleteBattingStats, createPitchingStats, showPitchingStats, updatePitchingStats, deletePitchingStats, signin, signup } from './api.js'
+import { store } from './store.js'
 import {
 	onIndexPlayerSuccess,
-    onIndexBattingStatsSuccess,
-    onIndexPitchingStatsSuccess,
+	onIndexBattingStatsSuccess,
+	onIndexPitchingStatsSuccess,
 	onFailure,
 	onCreatePlayerSuccess,
-    onCreateBattingStatsSuccess,
-    onCreatePitchingStatsSuccess,
+	onCreateBattingStatsSuccess,
+	onCreatePitchingStatsSuccess,
 	onShowPlayerSuccess,
-    onShowBattingStatsSuccess,
-    onShowPitchingStatsSuccess,
+	onShowBattingStatsSuccess,
+	onShowPitchingStatsSuccess,
 	onUpdatePlayerSuccess,
-    onUpdateBattingStatsSuccess,
-    onUpdatePitchingStatsSuccess,
+	onUpdateBattingStatsSuccess,
+	onUpdatePitchingStatsSuccess,
 	onDeletePlayerSuccess,
 	onDeleteBattingStatsSuccess,
-    onDeletePitchingStatsSuccess,
+	onDeletePitchingStatsSuccess,
+	onSigninSuccess,
+	onSignupSuccess,
 } from './ui.js'
 const createSigninForm = document.querySelector('#signin-form')
 const createSignupForm = document.querySelector('#signup-form')
@@ -30,155 +33,170 @@ const showBattingStatsContainer = document.querySelector('#show-battingStats-con
 const showPitchingStatsContainer = document.querySelector('#show-pitchingStats-container')
 
 
-indexPlayer()
-    .then(res => res.json())
-    .then(res => {
-        console.log(res)
-        onIndexPlayerSuccess(res.players)
-    })
-    .catch(onFailure)
+indexPlayerContainer.addEventListener('click', (event) => {
+	const id = event.target.getAttribute('data-id')
 
-indexBattingStats()
-    .then(res => res.json())
-    .then(res => {
-        console.log(res)
-        onIndexBattingStatsSuccess(res.battingStats)
-    })
-    .catch(onFailure)
+	if (!id) return
 
-indexPitchingStats()
-    .then(res => res.json())
-    .then(res => {
-        console.log(res)
-        onIndexPitchingStatsSuccess(res.pitchingStats)
-    })
-    .catch(onFailure)
+	showPlayer(id)
+		.then((res) => res.json())
+		.then((res) => {
+			onShowPlayerSuccess(res.players)
+		})
+		.catch(onFailure)
+})
+
+indexBattingStatsContainer.addEventListener('click', (event) => {
+	const id = event.target.getAttribute('data-id')
+
+	if (!id) return
+
+	showBattingStats(id)
+		.then((res) => res.json())
+		.then((res) => {
+			onShowBattingStatsSuccess(res.battingStats)
+		})
+		.catch(onFailure)
+})
+
+indexPitchingStatsContainer.addEventListener('click', (event) => {
+	const id = event.target.getAttribute('data-id')
+
+	if (!id) return
+
+	showPitchingStats(id)
+		.then((res) => res.json())
+		.then((res) => {
+			onShowPitchingStatsSuccess(res.pitchingStats)
+		})
+		.catch(onFailure)
+})
+
 
 
 createPlayerForm.addEventListener('submit', (event) => {
-    event.preventDefault()
+	event.preventDefault()
 
-    const playerData = {
-			player: {
-				name: event.target['name'].value,
-				position: event.target['position'].value,
-				birthplace: event.target['birthplace'].value,
-				yearsBorn: event.target['yearsBorn'].value,
-			},
-		}
+	const playerData = {
+		player: {
+			name: event.target['name'].value,
+			position: event.target['position'].value,
+			birthplace: event.target['birthplace'].value,
+			yearsBorn: event.target['yearsBorn'].value,
+		},
+	}
 
-    // console.log(characterData)
-    createPlayer(playerData)
-			.then(onCreatePlayerSuccess)
-			.catch(onFailure)
+	// console.log(characterData)
+	createPlayer(playerData)
+		.then(onCreatePlayerSuccess)
+		.catch(onFailure)
 })
 
 createSigninForm.addEventListener('submit', (event) => {
-    event.preventDefault()
+	event.preventDefault()
 
-    const signinData = {
-			signin: {
-				email: event.target['email'].value,
-				password: event.target['password'].value
-			},
-		}
+	const signinData = {
+		credentials: {
+			email: event.target['email'].value,
+			password: event.target['password'].value
+		},
+	}
 
-    // console.log(characterData)
-    signin(signinData)
-			.then(onCreatePlayerSuccess)
-			.catch(onFailure)
+	// console.log(characterData)
+	signin(signinData)
+		.then(onSigninSuccess)
+		.catch(onFailure)
 })
 
 createSignupForm.addEventListener('submit', (event) => {
-    event.preventDefault()
+	event.preventDefault()
 
-    const signupData = {
-			signup: {
-				email: event.target['email'].value,
-				password: event.target['password'].value
-			},
-		}
+	const signupData = {
+		credentials: {
+			email: event.target['email'].value,
+			password: event.target['password'].value
+		},
+	}
 
-    // console.log(characterData)
-    signup(signupData)
-			.then(onCreatePlayerSuccess)
-			.catch(onFailure)
+	console.log(signupData)
+	signup(signupData)
+		.then(onSignupSuccess)
+		.catch(onFailure)
 })
 
 
 createBattingStatsForm.addEventListener('submit', (event) => {
-    event.preventDefault()
+	event.preventDefault()
 
-    const battingStatsData = {
-		    battingStats: {
-				name: event.target['name'].value,
-				average: event.target['average'].value,
-				homerun: event.target['homerun'].value,
-				rbi: event.target['rbi'].value,
-				image: event.target['image'].value
-			},
-		}
+	const battingStatsData = {
+		battingStat: {
+			name: event.target['name'].value,
+			homerun: event.target['homerun'].value,
+			rbi: event.target['rbi'].value,
+			playerId: store.currentPlayereId, 
+		//	image: event.target['image'].value
+		},
+	}
 
-    // console.log(characterData)
-    createBattingStats(battingStatsData)
-			.then(onCreateBattingStatsSuccess)
-			.catch(onFailure)
+	// console.log(characterData)
+	createBattingStats(battingStatsData)
+		.then(onCreateBattingStatsSuccess)
+		.catch(onFailure)
 })
 
 createPitchingStatsForm.addEventListener('submit', (event) => {
-    event.preventDefault()
+	event.preventDefault()
 
-    const pitchingStatsData = {
-		    pitchingStats: {
-				name: event.target['name'].value,
-				win: event.target['win'].value,
-				loss: event.target['loss'].value,
-				era: event.target['era'].value,
-				image: event.target['image'].value
-			},
-		}
+	const pitchingStatsData = {
+		pitchingStat: {
+			name: event.target['name'].value,
+			win: event.target['win'].value,
+			loss: event.target['loss'].value,
+			playerId: store.currentPlayereId, 
+		},
+	}
 
-    // console.log(pitchingStatsData)
-    createPitchingStats(pitchingStatsData)
-			.then(onCreatePitchingStatsSuccess)
-			.catch(onFailure)
+	// console.log(pitchingStatsData)
+	createPitchingStats(pitchingStatsData)
+		.then(onCreatePitchingStatsSuccess)
+		.catch(onFailure)
 })
 
 
 indexPlayerContainer.addEventListener('click', (event) => {
-    const id = event.target.getAttribute('data-id')
-    // console.log(id)
+	const id = event.target.getAttribute('data-id')
+	// console.log(id)
 
 	if (!id) return
 
-    showPlayer(id)
-			.then((res) => res.json())
-			.then((res) => onShowPlayerSuccess(res.player))
-			.catch(onFailure)
+	showPlayer(id)
+		.then((res) => res.json())
+		.then((res) => onShowPlayerSuccess(res.player))
+		.catch(onFailure)
 })
 
 indexBattingStatsContainer.addEventListener('click', (event) => {
-    const id = event.target.getAttribute('data-id')
-    // console.log(id)
+	const id = event.target.getAttribute('data-id')
+	// console.log(id)
 
 	if (!id) return
 
-    showBattingStats(id)
-			.then((res) => res.json())
-			.then((res) => onShowBattingStatsSuccess(res.battingStats))
-			.catch(onFailure)
+	showBattingStats(id)
+		.then((res) => res.json())
+		.then((res) => onShowBattingStatsSuccess(res.battingStats))
+		.catch(onFailure)
 })
 
 indexPitchingStatsContainer.addEventListener('click', (event) => {
-    const id = event.target.getAttribute('data-id')
-    // console.log(id)
+	const id = event.target.getAttribute('data-id')
+	// console.log(id)
 
 	if (!id) return
 
-    showPitchingStats(id)
-			.then((res) => res.json())
-			.then((res) => onShowPitchingStatsSuccess(res.pitchingStats))
-			.catch(onFailure)
+	showPitchingStats(id)
+		.then((res) => res.json())
+		.then((res) => onShowPitchingStatsSuccess(res.pitchingStats))
+		.catch(onFailure)
 })
 
 showPlayerContainer.addEventListener('submit', (event) => {
@@ -192,12 +210,24 @@ showPlayerContainer.addEventListener('submit', (event) => {
 			position: event.target['position'].value,
 			birthplace: event.target['birthplace'].value,
 			yearsBorn: event.target['yearsBorn'].value,
+			homerun: event.target['homerun'].value,
+			rbi: event.target['rbi'].value,
 		},
+        /*
+		const battingStatsData = {
+		battingStats: {
+			name: event.target['name'].value,
+			average: event.target['average'].value,
+			homerun: event.target['homerun'].value,
+			rbi: event.target['rbi'].value,
+			image: event.target['image'].value,
+		},
+	}*/
 	}
-
+	
 	if (!id) return
-
-	updatePlayer(playerData, id)
+        
+	updatePlayer(playerData,  id)
 		// this function (onUpdateCharacterSuccess) does not need anything to run. NO params
 		.then(onUpdatePlayerSuccess)
 		.catch(onFailure)
@@ -211,16 +241,15 @@ showBattingStatsContainer.addEventListener('submit', (event) => {
 	const battingStatsData = {
 		battingStats: {
 			name: event.target['name'].value,
-			average: event.target['average'].value,
 			homerun: event.target['homerun'].value,
 			rbi: event.target['rbi'].value,
-			image: event.target['image'].value
 		},
 	}
-
+    console.log(battingStatsData)
 	if (!id) return
 
 	updateBattingStats(battingStatsData, id)
+	//updatePlayer(playerData, id)
 		// this function (onUpdateCharacterSuccess) does not need anything to run. NO params
 		.then(onUpdateBattingStatsSuccess)
 		.catch(onFailure)
@@ -237,8 +266,6 @@ showPitchingStatsContainer.addEventListener('submit', (event) => {
 			name: event.target['name'].value,
 			win: event.target['win'].value,
 			loss: event.target['loss'].value,
-			era: event.target['era'].value,
-			image: event.target['image'].value
 		},
 	}
 

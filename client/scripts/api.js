@@ -1,5 +1,13 @@
+import { store } from './store.js'
+
+
 export const indexPlayer = () => {
-    return fetch(`http://localhost:8000/players`)
+    return fetch(`http://localhost:8000/players`), {
+        /*
+        headers: {
+            'Authorization': `Bearer ${store.userToken}`,
+        }*/
+    }
 }
 
 export const indexBattingStats = () => {
@@ -35,7 +43,7 @@ export const createBattingStats = (data) => {
 }
 
 export const signin = (data) => {
-    return fetch(`http://localhost:8000/signin`, {
+    return fetch(`http://localhost:8000/sign-in`, {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -46,7 +54,7 @@ export const signin = (data) => {
 }
 
 export const signup = (data) => {
-    return fetch(`http://localhost:8000/signin`, {
+    return fetch(`http://localhost:8000/sign-up`, {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -68,7 +76,11 @@ export const createPitchingStats = (data) => {
 }
 
 export const showPlayer = (id) => {
-    return fetch(`http://localhost:8000/players/${id}`)
+    return fetch(`http://localhost:8000/players/${id}`), {
+        headers: {
+			Authorization: `Bearer ${store.userToken}`,
+		},
+    }
 }
 
 export const showBattingStats = (id) => {

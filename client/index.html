@@ -13,58 +13,32 @@
     <title>DnD Campaign Tracker</title>
 </head>
 <body>
+    <nav>
+        <ul>
+            <li><a href="index.html">Sign in or Sign up</a></li>
+            <li><a href="player.html">Player Information</a></li>
+            <li><a href="battingStats.html">Batting Stats</a></li>
+            <li><a href="pitchingStats.html">Pitching Stats</a></li>
+          </ul>
+        </nav>
+   
+    <div id="auth-container">
+        <form id="signup-form">
+            <h3>Sign Up Form</h3>
+            <input type="text" name="email" placeholder="email">
+            <input type="text" name="password" placeholder="password">
+            <input type="submit" value="Sign Up">
+        </form>
 
-    <div id="auth-container"></div>
-    <form id="signup-form">
-        <h3>Sign Up Form</h3>
-        <input type="text" name="email" placeholder="email">
-        <input type="text" name="password" placeholder="password">
-        <input type="submit" value="Sign Up">
-    </form>
-
-    <form id="signin-form">
-        <h3>Sign In Form</h3>
-        <input type="text" name="email" placeholder="email">
-        <input type="text" name="password" placeholder="password">
-        <input type="submit" value="Sign In">
-    </form>
-</div>
+        <form id="signin-form">
+            <h3>Sign In Form</h3>
+            <input type="text" name="email" placeholder="email">
+            <input type="text" name="password" placeholder="password">
+            <input type="submit" value="Sign In">
+        </form>
+    </div>
 
 
-    <div id="message-container"></div>
-    <div id="index-player-container"></div>
-    <div id="show-player-container"></div>
-    <form id="create-player-form">
-        <h3>Player Information Creator</h3>
-        <input type="text" name="name" placeholder="name">
-        <input type="text" name="position" placeholder="position">
-        <input type="text" name="birthplace" placeholder="birthplace">
-        <input type="number" name="yearsBorn" placeholder="yearsBorn">
-        <input type="submit" value="Create Player">
-    </form>
-
-    <div id="message-container"></div>
-    <div id="index-battingStats-container"></div>
-    <div id="show-battingStats-container"></div>
-    <form id="create-battingStats-form">
-        <h3>Batting Stats Creator</h3>
-        <input type="text" name="name" placeholder="name">
-        <input type="number" name="average" placeholder="average" step="0.001" min="0" max="1">
-        <input type="number" name="homerun" placeholder="homerun">
-        <input type="number" name="rbi" placeholder="rbi">
-        <input type="submit" value="Create Batting Stats">
-    </form>
-
-    <div id="message-container"></div>
-    <div id="index-pitchingStats-container"></div>
-    <div id="show-pitchingStats-container"></div>
-    <form id="create-pitchingStats-form">
-        <h3>Pitching Stats Creator</h3>
-        <input type="text" name="name" placeholder="name">
-        <input type="number" name="win" placeholder="win">
-        <input type="number" name="loss" placeholder="loss">
-        <input type="number" name="era" placeholder="era">
-        <input type="submit" value="Create Pitching Stats">
-    </form>
+   
 </body>
 </html>
