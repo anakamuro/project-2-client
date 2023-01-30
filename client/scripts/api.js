@@ -77,9 +77,10 @@ export const createPitchingStats = (data) => {
 
 export const showPlayer = (id) => {
     return fetch(`http://localhost:8000/players/${id}`), {
+        /*
         headers: {
 			Authorization: `Bearer ${store.userToken}`,
-		},
+		},*/
     }
 }
 

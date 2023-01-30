@@ -19,6 +19,7 @@ export const onIndexPlayerSuccess = (players) => {
         `
 
         indexPlayerContainer.appendChild(div)
+        console.log(indexPlayerContainer)
     })
 }
 

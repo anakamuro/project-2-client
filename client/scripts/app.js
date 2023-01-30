@@ -1,4 +1,4 @@
-import {  createPlayer, showPlayer, updatePlayer, deletePlayer, createBattingStats, showBattingStats, updateBattingStats, deleteBattingStats, createPitchingStats, showPitchingStats, updatePitchingStats, deletePitchingStats, signin, signup } from './api.js'
+import {  indexPlayer, indexBattingStats, indexPitchingStats, createPlayer, showPlayer, updatePlayer, deletePlayer, createBattingStats, showBattingStats, updateBattingStats, deleteBattingStats, createPitchingStats, showPitchingStats, updatePitchingStats, deletePitchingStats, signin, signup } from './api.js'
 import { store } from './store.js'
 import {
 	onIndexPlayerSuccess,
@@ -31,6 +31,30 @@ const indexPitchingStatsContainer = document.querySelector('#index-pitchingStats
 const showPlayerContainer = document.querySelector('#show-player-container')
 const showBattingStatsContainer = document.querySelector('#show-battingStats-container')
 const showPitchingStatsContainer = document.querySelector('#show-pitchingStats-container')
+
+indexPlayer()
+    .then(res => res.json())
+    .then(res => {
+        console.log(res)
+        onIndexPlayerSuccess(res.players)
+    })
+    .catch(onFailure)
+
+indexBattingStats()
+    .then(res => res.json())
+    .then(res => {
+        console.log(res)
+        onIndexBattingStatsSuccess(res.battingStats)
+    })
+    .catch(onFailure)
+
+indexPitchingStats()
+    .then(res => res.json())
+    .then(res => {
+        console.log(res)
+        onIndexPitchingStatsSuccess(res.pitchingStats)
+    })
+    .catch(onFailure)
 
 
 indexPlayerContainer.addEventListener('click', (event) => {
