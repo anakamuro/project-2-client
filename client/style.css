@@ -72,3 +72,9 @@ ul {
     position: relative;
     top: -800px;
   }
+
+  #show-player-container {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+  }
