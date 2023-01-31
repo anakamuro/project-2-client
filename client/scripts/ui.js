@@ -9,6 +9,7 @@ const indexPitchingStatsContainer = document.querySelector('#index-pitchingStats
 const showPitchingStatsContainer = document.querySelector('#show-pitchingStats-container')
 const authContainer = document.querySelector('#auth-container')
 const indexContainer = document.querySelector('#index-container')
+const createSigninForm = document.querySelector('#signin-form')
 
 
 export const onIndexPlayerSuccess = (players) => {
@@ -145,10 +146,11 @@ export const onShowPitchingStatsSuccess = (pitchingStats) => {
 }
 
 export const onSigninSuccess = (userToken) => {
-    authContainer.style.display = ''
+    createSigninForm.style.display = ''
      store.userToken = userToken;
-    authContainer.classList.add('hide')
+     createSigninForm.classList.add('hide')
     indexContainer.classList.remove('hide')
+    console.log(store.userToken);
 }
 
 export const onSignupSuccess = () => {
