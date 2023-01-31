@@ -61,8 +61,14 @@ ul {
   nav {
     background-color: black;
   }
-  */
+  
   #show-player-container {
     width: 500px;
     height: 500px;
+  }
+  */
+
+  .delete {
+    position: relative;
+    top: -800px;
   }
