@@ -30,6 +30,7 @@ const indexPitchingStatsContainer = document.querySelector('#index-pitchingStats
 const showPlayerContainer = document.querySelector('#show-player-container')
 const showBattingStatsContainer = document.querySelector('#show-battingStats-container')
 const showPitchingStatsContainer = document.querySelector('#show-pitchingStats-container')
+import {store} from "./store.js";
 
 
 indexPlayer()
@@ -65,7 +66,7 @@ createPlayerForm.addEventListener('submit', (event) => {
 				name: event.target['name'].value,
 				position: event.target['position'].value,
 				birthplace: event.target['birthplace'].value,
-				yearsBorn: event.target['yearsBorn'].value,
+				yearsBorn: event.target['yearsBorn'].value
 			},
 		}
 
@@ -117,7 +118,7 @@ createBattingStatsForm.addEventListener('submit', (event) => {
 				average: event.target['average'].value,
 				homerun: event.target['homerun'].value,
 				rbi: event.target['rbi'].value,
-
+                playerId: store.playerId
 			},
 		}
 
@@ -135,7 +136,8 @@ createPitchingStatsForm.addEventListener('submit', (event) => {
 				name: event.target['name'].value,
 				win: event.target['win'].value,
 				loss: event.target['loss'].value,
-				era: event.target['era'].value
+				era: event.target['era'].value,
+				playerId: store.playerId
 			},
 		}
 
@@ -192,7 +194,7 @@ showPlayerContainer.addEventListener('submit', (event) => {
 			name: event.target['name'].value,
 			position: event.target['position'].value,
 			birthplace: event.target['birthplace'].value,
-			yearsBorn: event.target['yearsBorn'].value,
+			yearsBorn: event.target['yearsBorn'].value
 		},
 	}
 
