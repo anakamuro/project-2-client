@@ -30,8 +30,9 @@ const indexPitchingStatsContainer = document.querySelector('#index-pitchingStats
 const showPlayerContainer = document.querySelector('#show-player-container')
 const showBattingStatsContainer = document.querySelector('#show-battingStats-container')
 const showPitchingStatsContainer = document.querySelector('#show-pitchingStats-container')
-import {store} from "./store.js";
-
+const authContainer = document.querySelector('#auth-container')
+const addBattingStatsContainer = document.querySelector('#add-battingStats-container')
+const addPitchingStatsContainer = document.querySelector('#add-pitchingStats-container')
 
 indexPlayer()
     .then(res => res.json())
@@ -66,7 +67,7 @@ createPlayerForm.addEventListener('submit', (event) => {
 				name: event.target['name'].value,
 				position: event.target['position'].value,
 				birthplace: event.target['birthplace'].value,
-				yearsBorn: event.target['yearsBorn'].value
+				yearsBorn: event.target['yearsBorn'].value,
 			},
 		}
 
@@ -118,7 +119,7 @@ createBattingStatsForm.addEventListener('submit', (event) => {
 				average: event.target['average'].value,
 				homerun: event.target['homerun'].value,
 				rbi: event.target['rbi'].value,
-                playerId: store.playerId
+
 			},
 		}
 
@@ -136,8 +137,7 @@ createPitchingStatsForm.addEventListener('submit', (event) => {
 				name: event.target['name'].value,
 				win: event.target['win'].value,
 				loss: event.target['loss'].value,
-				era: event.target['era'].value,
-				playerId: store.playerId
+				era: event.target['era'].value
 			},
 		}
 
@@ -194,7 +194,7 @@ showPlayerContainer.addEventListener('submit', (event) => {
 			name: event.target['name'].value,
 			position: event.target['position'].value,
 			birthplace: event.target['birthplace'].value,
-			yearsBorn: event.target['yearsBorn'].value
+			yearsBorn: event.target['yearsBorn'].value,
 		},
 	}
 
@@ -204,6 +204,31 @@ showPlayerContainer.addEventListener('submit', (event) => {
 		// this function (onUpdateCharacterSuccess) does not need anything to run. NO params
 		.then(onUpdatePlayerSuccess)
 		.catch(onFailure)
+})
+
+showPlayerContainer.addEventListener('click', (event) => {
+	const id = event.target.getAttribute('data-id')
+
+	if (!id) return
+
+	// if the event target click comes from the delete campaign button
+	if (event.target.id === 'delete-player-button') {
+		deletePlayer(id)
+		.then(onDeletePlayerSuccess)
+		.catch(onFailure)
+	} else if (event.target.id === 'add-battingStats-button') {
+		addBattingStatsContainer.classList.remove('hide')
+		store.currentPlayerId = id
+	}
+
+	if (event.target.id === 'delete-player-button') {
+		deletePlayer(id)
+		.then(onDeletePlayerSuccess)
+		.catch(onFailure)
+	} else if (event.target.id === 'add-pitchingStats-button') {
+		addPitchingStatsContainer.classList.remove('hide')
+		store.currentPlayerId = id
+	}
 })
 
 showBattingStatsContainer.addEventListener('submit', (event) => {
@@ -281,4 +306,36 @@ showPitchingStatsContainer.addEventListener('click', (event) => {
 		.catch(onFailure)
 })
 
+authContainer.addEventListener('submit', (event) => {
+	event.preventDefault()
+	const userData = {
+		credentials: {
+			email: event.target['email'].value,
+			password: event.target['password'].value,
+		},
+	}
+	signup(userData).then(onSignupSuccess).catch(onFailure)
+})
 
+authContainer.addEventListener('submit', (event) => {
+	event.preventDefault()
+	const userData = {
+		credentials: {
+			email: event.target['email'].value,
+			password: event.target['password'].value,
+		},
+	}
+	signin(userData)
+		.then((res) => res.json())
+		.then((res) => onSigninSuccess(res.token))
+		.then(indexPlayer)
+		.then((res) => res.json())
+		.then((res) => onIndexPlayerSuccess(res.players))
+		.then(indexBattingStats)
+		.then((res) => res.json())
+		.then((res) => onIndexBattingStatsSuccess(res.battingStats))
+		.catch(onFailure)
+		.then(indexPitchingStats)
+		.then((res) => onIndexPitchingStatsSuccess(res.pitchingStats))
+		.catch(onFailure)
+})

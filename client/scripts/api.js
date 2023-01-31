@@ -1,5 +1,11 @@
+import { store } from './store.js'
+
 export const indexPlayer = () => {
-    return fetch(`http://localhost:8000/players`)
+    return fetch(`http://localhost:8000/players`, {
+		headers: {
+			'Authorization': `Bearer ${store.userToken}`,
+		},
+    })
 }
 
 export const indexBattingStats = () => {
@@ -68,7 +74,11 @@ export const createPitchingStats = (data) => {
 }
 
 export const showPlayer = (id) => {
-    return fetch(`http://localhost:8000/players/${id}`)
+    return fetch(`http://localhost:8000/players/${id}`, {
+		headers: {
+			'Authorization': `Bearer ${store.userToken}`,
+		},
+	})
 }
 
 export const showBattingStats = (id) => {
@@ -84,7 +94,8 @@ export const updatePlayer = (data, id) => {
         method: 'PATCH',
         headers: {
             'Accept': 'application/json',
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${store.userToken}`,
         },
         body: JSON.stringify(data)
     })
@@ -120,7 +131,10 @@ export const deletePlayer = (id) => {
 
 export const deleteBattingStats = (id) => {
     return fetch(`http://localhost:8000/batting-stats/${id}`, {
-        method: 'DELETE'
+        method: 'DELETE',
+        headers: {
+            Authorization: `Bearer ${store.userToken}`,
+        },
     })
 }
 

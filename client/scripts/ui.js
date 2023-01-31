@@ -1,3 +1,5 @@
+import { store } from './store.js'
+
 const indexPlayerContainer = document.querySelector('#index-player-container')
 const messageContainer = document.querySelector('#message-container')
 const showPlayerContainer = document.querySelector('#show-player-container')
@@ -6,71 +8,27 @@ const showBattingStatsContainer = document.querySelector('#show-battingStats-con
 const indexPitchingStatsContainer = document.querySelector('#index-pitchingStats-container')
 const showPitchingStatsContainer = document.querySelector('#show-pitchingStats-container')
 const authContainer = document.querySelector('#auth-container')
-
-import {store} from "./store.js";
-
+const indexContainer = document.querySelector('#index-container')
 
 
 export const onIndexPlayerSuccess = (players) => {
-    console.log({ players })
-    players.forEach(player => {
-        let playerHTML = `
-      <div>
-      <p>${player.name}</p> 
-      <p>${player.position}</p>
-      <p>${player.birthplace}</p>
-      <p>${player.yearsBorn}</p>
-      <p>${player.battingStats.length > 0 ? player.battingStats[0].homerun : ''} </p>
-      <p>${player.battingStats.length > 0 ? player.battingStats[0].rbi : ''} </p>
-      <p>${player.pichingStats.length > 0 ? player.pitchingStats[0].homerun : ''} </p>
-      <p>${player.pitchingStats.length > 0 ? player.pitchingStats[0].rbi : ''} </p>
-      <button class="batStat-btn" id="${player._id}">Add battingStat</button>
-    
-      </div>
-  `
+    console.log(players, 'players')
+    players.forEach(players => {
+        const div = document.createElement('div')
+        div.innerHTML = `
+            <p>${players.name}</p> 
+            <p>${players.position}</p>
+            <p>${players.birthplace}</p>
+            <p>${players.yearsBorn}</p>
+            <p>${players.homerun}</p>
+            <p>${players.rbi}</p>
+            <button data-id="${players._id}">Show Player</button>
+            console.log( player.battingStats.homerun)
+        `
 
-        indexPlayerContainer.insertAdjacentHTML("beforeend", playerHTML);
-
-
-
-
-
-        /*  const div = document.createElement('div')
-          div.innerHTML = `
-              <p>${player.name}</p> 
-              <p>${player.position}</p>
-              <p>${player.birthplace}</p>
-              <p>${player.yearsBorn}</p>
-              <p>${player.battingStats[0].homerun}</p>
-              <p>${player.battingStats[0].rbi}</p>
-              <button data-id="${player._id}">Show Player</button>
-              console.log( player.battingStats.homerun)
-          `
-  
-          indexPlayerContainer.appendChild(div) */
+        indexPlayerContainer.appendChild(div)
     })
-
-    document.querySelectorAll(".batStat-btn").forEach(batBtn=> {
-        batBtn.addEventListener("click", (e)=> {
-             store.playerId= e.target.id
-             console.log(e.target.id)
-
-             console.log(store)
-        })
-        
-    })
-    document.querySelectorAll(".pitchStat-btn").forEach(pitchBtn=> {
-        pitchBtn.addEventListener("click", (e)=> {
-             store.playerId= e.target.id
-             console.log(e.target.id)
-
-             console.log(store)
-        })
-        
-    })
-
 }
-
 
 export const onIndexBattingStatsSuccess = (battingStats) => {
     console.log(battingStats, 'battingStats')
@@ -85,18 +43,13 @@ export const onIndexBattingStatsSuccess = (battingStats) => {
 
         indexBattingStatsContainer.appendChild(div)
     })
-
-
-
 }
 
 export const onIndexPitchingStatsSuccess = (pitchingStats) => {
     pitchingStats.forEach(pitchingStat => {
         const div = document.createElement('div')
         div.innerHTML = `
-            <h3>${pitchingStat.name}</h3>  
-           <h3>${pitchingStat.win}</h3>
-           <h3>${pitchingStat.loss}</h3>
+            <h3>${pitchingStat.name}  ${pitchingStat.era}</h3>
             <button data-id="${pitchingStat._id}" >Show Batting Stats</button>
         `
 
@@ -124,27 +77,23 @@ export const onCreatePitchingStatsSuccess = () => {
 }
 
 export const onShowPlayerSuccess = (player, battingStat) => {
-    console.log({ battingStat, player })
+    console.log(battingStat)
     const div = document.createElement('div')
     div.innerHTML = `
         <p>${player.name}</p>
         <p>${player.position}</p>
         <p>${player.birthplace}</p>
         <p>${player.yearsBorn}</p>
-        <p>${player.battingStats[0].homerun}</p>
-        <p>${player.battingStats[0].rbi}</p>
-        <p>${player.pitchingStats[0].homerun}</p>
-        <p>${player.pitchingStats[0].rbi}</p>
+        <p>${battingStat.homerun}</p>
+        <p>${battingStat.rbi}</p>
         <p>${player._id}</p>
         <form data-id="${player._id}">
             <input type="text" name="name" value="${player.name}" />
             <input type="text" name="position" value="${player.position}" />
             <input type="text" name="birthplace" value="${player.birthplace}" />
             <input type="number" name="yearsBorn" value="${player.yearsBorn}" />
-            <input type="text" name="homerun" value="${player.battingStats.length > 0 ? player.battingStats[0].homerun : ''}" />
-            <input type="number" name="rbi" value="${player.battingStats.length > 0 ? player.battingStats[0].rbi : ''} " />
-            <input type="text" name="homerun" value="${player.battingStats.length > 0 ? player.pitchingStats[0].win : ''}" />
-            <input type="number" name="rbi" value="${player.battingStats.length > 0 ? player.pitchingStats[0].loss : ''} " />
+            <input type="text" name="homerun" value="${player.battingStat.homerun}" />
+            <input type="number" name="rbi" value="${player.battingStat.rbi}" />
             <input type="submit" value="Update Player" />
         </form>
         <button class="delete" type="button" data-id="${player._id}">Delete Player</button>
@@ -195,12 +144,14 @@ export const onShowPitchingStatsSuccess = (pitchingStats) => {
     showPitchingStatsContainer.appendChild(div)
 }
 
-export const onSigninSuccess = (signinData) => {
-    authContainer.style.display = 'none'
-    messageContainer.innerText = ''
+export const onSigninSuccess = (userToken) => {
+    authContainer.style.display = ''
+     store.userToken = userToken;
+    authContainer.classList.add('hide')
+    indexContainer.classList.remove('hide')
 }
 
-export const onSignupSuccess = (signupData) => {
+export const onSignupSuccess = () => {
     messageContainer.innerText = 'You signed up!! Please signin to continue'
 }
 

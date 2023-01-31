@@ -70,7 +70,33 @@
         <input type="submit" value="Create Pitching Stats">
     </form>
 
-  
+    <div id="index-container" class="hide">
+        <h2>Player</h2>
+        <div id="index-player-container" class="content-container"></div>
+        <h2>Batting Stats</h2>
+        <div id="index-battingStats-container" class="content-container"></div>
+        <h2>Pitching Stats</h2>
+        <div id="index-pitchingStats-container" class="content-container"></div>
+    </div>
+       
+    <div class="hide container" id="show-player-container"></div>
+<div class="hide container" id="show-battingStats-container"></div>
+<div class="hide container" id="show-pitchingStats-container"></div>
+<div class="hide" id="add-battingStats-container">
+    <form>
+        <input class="form-control" type="text" name="homerun">
+        <input class="form-control" type="text" name="rbi">
+        <button type="submit" class="btn btn-primary">Add battingStats</button>
+    </form>
+</div>
+
+<div class="hide" id="add-pitchingStats-container">
+    <form>
+        <input class="form-control" type="text" name="win">
+        <input class="form-control" type="text" name="loss">
+        <button type="submit" class="btn btn-primary">Add pitchingStats</button>
+    </form>
+</div>
     
 
 
