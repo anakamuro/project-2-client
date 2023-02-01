@@ -1,9 +1,18 @@
+body {
+  background-image: url("https://cdn.britannica.com/14/125714-050-429B61D6/wall-Green-Monster-Fenway-Park-Boston.jpg");
+  background-color: #cccccc;
+ }
+ 
+ 
+ 
+ 
  #create-player-form, #create-battingStats-form,  #create-pitchingStats-form{
     display: flex;
     flex-direction: column;
     background-color: Blue;
     position: relative;
     top: 2000px;
+    display: none;
 }
 
 input {
@@ -84,6 +93,9 @@ ul {
     height: 500px;
   }
   
-
+  #show-player-container {
+    display: none;
+  }
+  
   
   

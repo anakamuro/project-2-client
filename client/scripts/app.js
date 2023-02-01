@@ -96,7 +96,8 @@ createPlayerForm.addEventListener('submit', (event) => {
 
 createSigninForm.addEventListener('submit', (event) => {
 	event.preventDefault()
-
+	createPlayerForm.style.display = "block";
+	showPlayerContainer.style.display = "block";
 	const signinData = {
 		credentials: {
 			email: event.target['email'].value,
