@@ -21,8 +21,6 @@ export const onIndexPlayerSuccess = (players) => {
             <p>${players.position}</p>
             <p>${players.birthplace}</p>
             <p>${players.yearsBorn}</p>
-            <p>${players.homerun}</p>
-            <p>${players.rbi}</p>
             <button data-id="${players._id}">Show Player</button>
             console.log( player.battingStats.homerun)
         `
@@ -77,7 +75,7 @@ export const onCreatePitchingStatsSuccess = () => {
     messageContainer.innerText = 'You have created a pitching stats!! :)'
 }
 
-export const onShowPlayerSuccess = (player, battingStat) => {
+export const onShowPlayerSuccess = (player) => {
     console.log(battingStat)
     const div = document.createElement('div')
     div.innerHTML = `
@@ -85,16 +83,12 @@ export const onShowPlayerSuccess = (player, battingStat) => {
         <p>${player.position}</p>
         <p>${player.birthplace}</p>
         <p>${player.yearsBorn}</p>
-        <p>${battingStat.homerun}</p>
-        <p>${battingStat.rbi}</p>
         <p>${player._id}</p>
         <form data-id="${player._id}">
             <input type="text" name="name" value="${player.name}" />
             <input type="text" name="position" value="${player.position}" />
             <input type="text" name="birthplace" value="${player.birthplace}" />
             <input type="number" name="yearsBorn" value="${player.yearsBorn}" />
-            <input type="text" name="homerun" value="${player.battingStat.homerun}" />
-            <input type="number" name="rbi" value="${player.battingStat.rbi}" />
             <input type="submit" value="Update Player" />
         </form>
         <button class="delete" type="button" data-id="${player._id}">Delete Player</button>

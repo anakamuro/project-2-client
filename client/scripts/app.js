@@ -79,7 +79,7 @@ createPlayerForm.addEventListener('submit', (event) => {
 		.catch(onFailure)
 })
 
-createSigninForm.addEventListener('submit', async (event) => {
+createSigninForm.addEventListener('submit', (event) => {
 	event.preventDefault()
 
 	const signinData = {
@@ -88,12 +88,21 @@ createSigninForm.addEventListener('submit', async (event) => {
 			password: event.target['password'].value
 		},
 	}
-	signin({
-		email: event.target['email'].value,
-		password: event.target['password'].value
-	}).then(onSigninSuccess)
+		signin(signinData)
+		.then((res) => res.json())
+		.then((res) => onSigninSuccess(res.token))
+		.then(indexPlayer)
+		.then((res) => res.json())
+		.then((res) => onIndexPlayerSuccess(res.campaigns))
+		.then(indexBattingStats)
+		.then((res) => res.json())
+		.then((res) => onIndexBattingStatsSuccess(res.battingStats))
+		.then(indexPitchingStats)
+		.then((res) => res.json())
+		.then((res) => onIndexPitchingStatsSuccess(res.pitchgingStats))
 		.catch(onFailure)
-})
+		})
+
 
 createSignupForm.addEventListener('submit', (event) => {
 	event.preventDefault()
@@ -104,13 +113,8 @@ createSignupForm.addEventListener('submit', (event) => {
 			password: event.target['password'].value
 		},
 	}
-
-	// console.log(characterData)
-	signup(signupData)
-		.then(onSignupSuccess)
-		.catch(onFailure)
+signup(signupData).then(onSignupSuccess).catch(onFailure)
 })
-
 
 createBattingStatsForm.addEventListener('submit', (event) => {
 	event.preventDefault()
