@@ -1,8 +1,6 @@
-
-
 import { indexPlayer, createPlayer, showPlayer, updatePlayer, deletePlayer, indexBattingStats, createBattingStats, showBattingStats, updateBattingStats, deleteBattingStats, indexPitchingStats, createPitchingStats, showPitchingStats, updatePitchingStats, deletePitchingStats, signin, signup } from './api.js'
 import {
-	onIndexPlayerSuccess,
+	//onIndexPlayerSuccess,
 	onIndexBattingStatsSuccess,
 	onIndexPitchingStatsSuccess,
 	onFailure,
@@ -32,17 +30,16 @@ const indexPitchingStatsContainer = document.querySelector('#index-pitchingStats
 const showPlayerContainer = document.querySelector('#show-player-container')
 const showBattingStatsContainer = document.querySelector('#show-battingStats-container')
 const showPitchingStatsContainer = document.querySelector('#show-pitchingStats-container')
-const authContainer = document.querySelector('#auth-container')
-const addBattingStatsContainer = document.querySelector('#add-battingStats-container')
-const addPitchingStatsContainer = document.querySelector('#add-pitchingStats-container')
 
-indexPlayer()
-	.then(res => res.json())
-	.then(res => {
-		console.log(res)
-		onIndexPlayerSuccess(res.players)
-	})
-	.catch(onFailure)
+
+// indexPlayer()
+//     .then(res => res.json())
+//     .then(res => {
+//         console.log(res)
+//         onIndexPlayerSuccess(res.players)
+// 		onShowPlayerSuccess(res.players)
+//     })
+//     .catch(onFailure)
 
 indexBattingStats()
 	.then(res => res.json())
@@ -75,7 +72,25 @@ createPlayerForm.addEventListener('submit', (event) => {
 
 	// console.log(characterData)
 	createPlayer(playerData)
-		.then(onCreatePlayerSuccess)
+		// .then(createBattingStats())
+		.then((res) => res.json()).then((data) => {
+			console.log(data);
+			createBattingStats({
+				battingStats: {
+					playerId: data.player._id,
+					name: event.target['name'].value,
+					homerun: event.target['homerun'].value,
+					rbi: event.target['rbi'].value
+				}
+			}).then((res) => res.json()).then((data) => console.log(data))
+		})
+		.then(onCreatePlayerSuccess).then(indexPlayer)
+		.then((res) => res.json()).then((data) => {
+			onShowPlayerSuccess(data.players)
+			data.players.map((player) => {
+				console.log(player);
+			})
+		})
 		.catch(onFailure)
 })
 
@@ -88,21 +103,27 @@ createSigninForm.addEventListener('submit', (event) => {
 			password: event.target['password'].value
 		},
 	}
-		signin(signinData)
+	signin(signinData)
 		.then((res) => res.json())
 		.then((res) => onSigninSuccess(res.token))
 		.then(indexPlayer)
-		.then((res) => res.json())
-		.then((res) => onIndexPlayerSuccess(res.campaigns))
-		.then(indexBattingStats)
-		.then((res) => res.json())
-		.then((res) => onIndexBattingStatsSuccess(res.battingStats))
-		.then(indexPitchingStats)
-		.then((res) => res.json())
-		.then((res) => onIndexPitchingStatsSuccess(res.pitchgingStats))
-		.catch(onFailure)
+		.then((res) => res.json()).then((data) => {
+			onShowPlayerSuccess(data.players)
+			data.players.map((player) => {
+				console.log(player);
+			})
 		})
 
+		// .then((data) => console.log(data))
+		// .then((res) => onIndexPlayerSuccess(res.campaigns))
+		// .then(indexBattingStats)
+		// .then((res) => res.json())
+		// .then((res) => onIndexBattingStatsSuccess(res.battingStats))
+		// .then(indexPitchingStats)
+		// .then((res) => res.json())
+		// .then((res) => onIndexPitchingStatsSuccess(res.pitchgingStats))
+		.catch(onFailure)
+})
 
 createSignupForm.addEventListener('submit', (event) => {
 	event.preventDefault()
@@ -113,8 +134,13 @@ createSignupForm.addEventListener('submit', (event) => {
 			password: event.target['password'].value
 		},
 	}
-signup(signupData).then(onSignupSuccess).catch(onFailure)
+
+	// console.log(characterData)
+	signup(signupData)
+		.then(onSignupSuccess)
+		.catch(onFailure)
 })
+
 
 createBattingStatsForm.addEventListener('submit', (event) => {
 	event.preventDefault()
@@ -212,31 +238,6 @@ showPlayerContainer.addEventListener('submit', (event) => {
 		.catch(onFailure)
 })
 
-showPlayerContainer.addEventListener('click', (event) => {
-	const id = event.target.getAttribute('data-id')
-
-	if (!id) return
-
-	// if the event target click comes from the delete campaign button
-	if (event.target.id === 'delete-player-button') {
-		deletePlayer(id)
-			.then(onDeletePlayerSuccess)
-			.catch(onFailure)
-	} else if (event.target.id === 'add-battingStats-button') {
-		addBattingStatsContainer.classList.remove('hide')
-		store.currentPlayerId = id
-	}
-
-	if (event.target.id === 'delete-player-button') {
-		deletePlayer(id)
-			.then(onDeletePlayerSuccess)
-			.catch(onFailure)
-	} else if (event.target.id === 'add-pitchingStats-button') {
-		addPitchingStatsContainer.classList.remove('hide')
-		store.currentPlayerId = id
-	}
-})
-
 showBattingStatsContainer.addEventListener('submit', (event) => {
 	event.preventDefault()
 
@@ -311,37 +312,3 @@ showPitchingStatsContainer.addEventListener('click', (event) => {
 		.then(onDeletePitchingStatsSuccess)
 		.catch(onFailure)
 })
-/*
-authContainer.addEventListener('submit', (event) => {
-	event.preventDefault()
-	const userData = {
-		credentials: {
-			email: event.target['email'].value,
-			password: event.target['password'].value,
-		},
-	}
-	signup(userData).then(onSignupSuccess).catch(onFailure)
-})
-
-authContainer.addEventListener('submit', (event) => {
-	event.preventDefault()
-	const userData = {
-		credentials: {
-			email: event.target['email'].value,
-			password: event.target['password'].value,
-		},
-	}
-	signin(userData)
-		.then((res) => res.json())
-		.then((res) => onSigninSuccess(res.token))
-		.then(indexPlayer)
-		.then((res) => res.json())
-		.then((res) => onIndexPlayerSuccess(res.players))
-		.then(indexBattingStats)
-		.then((res) => res.json())
-		.then((res) => onIndexBattingStatsSuccess(res.battingStats))
-		.catch(onFailure)
-		.then(indexPitchingStats)
-		.then((res) => onIndexPitchingStatsSuccess(res.pitchingStats))
-		.catch(onFailure)
-})*/

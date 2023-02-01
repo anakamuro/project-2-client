@@ -2,13 +2,20 @@
     display: flex;
     flex-direction: column;
     background-color: Blue;
+    position: relative;
+    top: 2000px;
 }
 
 input {
     height: 100px;
     width: 80%;
-    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-size: 40px;
+}
+.title {
+  color: white;
 }
 
 h3 {
@@ -17,11 +24,21 @@ h3 {
     margin: 0 auto;
     padding-top: 5%;
 }
-/*
-.delete {
-    height: 80px;
+.main-form {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  background-color: brown;
+  margin: 0 auto;
 }
 
+.delete {
+  height: 100px;
+  width: 80%;
+  margin: 0 auto;
+  font-size: 40px;
+}
 main {
     margin: 5px;
 }
@@ -66,15 +83,7 @@ ul {
     width: 500px;
     height: 500px;
   }
-  */
+  
 
-  .delete {
-    position: relative;
-    top: -800px;
-  }
-
-  #show-player-container {
-    position: absolute;
-    top: 0px;
-    left: 0px;
-  }
+  
+  
