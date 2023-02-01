@@ -8,7 +8,6 @@ const indexBattingStatsContainer = document.querySelector('#index-battingStats-c
 const showBattingStatsContainer = document.querySelector('#show-battingStats-container')
 const indexPitchingStatsContainer = document.querySelector('#index-pitchingStats-container')
 const showPitchingStatsContainer = document.querySelector('#show-pitchingStats-container')
-const authContainer = document.querySelector('#auth-container')
 const createSigninForm = document.querySelector('#signin-form')
 
 
@@ -18,22 +17,25 @@ export const onShowPlayerSuccess = (players) => {
     players.forEach(player => {
         const div = document.createElement('div')
         div.innerHTML = `
+        <div id="forms">
         <form class="main-form" data-id="${player._id}">
-            <h3>Player's Information</h3>
+            <h4>Player Information</h4>
             <div><span class="title">Name: </span><input type="text" name="name" value="${player.name}"></div>
         <div><span class="title">Position: </span><input type="text" name="position" value="${player.position}" /></div>
         <div><span class="title">Birthplace: </span><input type="text" name="birthplace" value="${player.birthplace}" /></div>
         <div><span class="title">Years Born: </span><input type="number" name="yearsBorn" value="${player.yearsBorn}" /></div>
-        <div><span class="title">RBI </span><input type="text" name="rbi" value="${player?.battingStats[0]?.homerun}" /></div>
-        <div><span class="title">RBI </span><input type="text" name="rbi" value="${player?.battingStats[0]?.rbi}" /></div>
+        <h4>Batting Stats</h4>
+        <div><span class="title">Average: </span><input type="integer" name="average" value="${player?.battingStats[0]?.average}" /></div>
+        <div><span class="title">Homerun: </span><input type="text" name="homerun" value="${player?.battingStats[0]?.homerun}" /></div>
+        <div><span class="title">RBI: </span><input type="text" name="rbi" value="${player?.battingStats[0]?.rbi}" /></div>
 
         
 
 
-            <input type="submit" value="Update Player" />
+            <input class="update" type="submit" value="Update Player" />
             <button class="delete" type="button" data-id="${player._id}">Delete Player</button>
-            <button class="batStat-btn" id="${player._id}">Add battingStat</button>
         </form>
+        </div>
     `
         showPlayerContainer.appendChild(div)
 
@@ -57,40 +59,13 @@ const playerBattingStat = (player) => {
     return `<h1>{player.rbi}</h1>`
 }
 
-
-/*
-<div><span class="title">Homerun: </span><input type="text" name="homerun" value="${player.battingStats.length > 0 ? player.battingStats[0].homerun : ''}"/></div>
-       <div><span class="title">RBI: </span><input type="text" name="rbi" value="${player.battingStats.length > 0 ? player.battingStats[0].rbi : ''}"/></div>
-            <input type="submit" value="Update Player" />
-            <button class="delete" type="button" data-id="${player._id}">Delete Player</button>
-            <button class="batStat-btn" id="${player._id}">Add battingStat</button>
-
-
-export const onIndexPlayerSuccess = (players) => {
- 
-    players.forEach(players => {
-        const div = document.createElement('div')
-        div.innerHTML = `
-            <p>${players.name}</p> 
-            <p>${players.position}</p>
-            <p>${players.birthplace}</p>
-            <p>${players.yearsBorn}</p>
-            <p>${players.homerun}</p>
-            <p>${players.rbi}</p>
-            <button data-id="${players._id}">Show Player</button>
-            console.log( player.battingStats.homerun)
-        `
-
-        indexPlayerContainer.appendChild(div)
-    })
-}*/
-
 export const onIndexBattingStatsSuccess = (players) => {
     console.log(battingStats, 'battingStats')
     players.forEach(player => {
         const div = document.createElement('div')
         div.innerHTML = `
             <p>${battingStat.name}</p>  
+            <p>${battingStat.average}</p>  
             <p>${battingStat.homerun}</p>
             <p>${battingStat.rbi}</p>
             <button data-id="${battingStat._id}" >Show Batting Stats</button>
@@ -224,82 +199,3 @@ export const onDeletePitchingStatsSuccess = () => {
 
 
 
-/*
-export const onIndexPlayerSuccess = (players) => {
-    console.log({ players })
-    players.forEach(player => {
-        let playerHTML = `
-      <div>
-      <p>${player.name}</p> 
-      <p>${player.position}</p>
-      <p>${player.birthplace}</p>
-      <p>${player.yearsBorn}</p>
-      <p>${player.battingStats.length > 0 ? player.battingStats[0].homerun : ''} </p>
-      <p>${player.battingStats.length > 0 ? player.battingStats[0].rbi : ''} </p>
-      <p>${player.pichingStats.length > 0 ? player.pitchingStats[0].homerun : ''} </p>
-      <p>${player.pitchingStats.length > 0 ? player.pitchingStats[0].rbi : ''} </p>
-      <button class="batStat-btn" id="${player._id}">Add battingStat</button>
-    
-      </div>
-  `
-
-        indexPlayerContainer.insertAdjacentHTML("beforeend", playerHTML);
-
-
-
-
-
-        /*  const div = document.createElement('div')
-          div.innerHTML = `
-              <p>${player.name}</p> 
-              <p>${player.position}</p>
-              <p>${player.birthplace}</p>
-              <p>${player.yearsBorn}</p>
-              <p>${player.battingStats[0].homerun}</p>
-              <p>${player.battingStats[0].rbi}</p>
-              <button data-id="${player._id}">Show Player</button>
-              console.log( player.battingStats.homerun)
-          `
-  
-          indexPlayerContainer.appendChild(div) 
-    })
-
-    document.querySelectorAll(".batStat-btn").forEach(batBtn=> {
-        batBtn.addEventListener("click", (e)=> {
-             store.playerId= e.target.id
-             console.log(e.target.id)
-
-             console.log(store)
-        })
-        
-    })
-    document.querySelectorAll(".pitchStat-btn").forEach(pitchBtn=> {
-        pitchBtn.addEventListener("click", (e)=> {
-             store.playerId= e.target.id
-             console.log(e.target.id)
-
-             console.log(store)
-        })
-        
-    })
-
-}
-
-
-export const onIndexBattingStatsSuccess = (battingStats) => {
-    console.log(battingStats, 'battingStats')
-    battingStats.forEach(battingStat => {
-        const div = document.createElement('div')
-        div.innerHTML = `
-            <p>${battingStat.name}</p>  
-            <p>${battingStat.homerun}</p>
-            <p>${battingStat.rbi}</p>
-            <button data-id="${battingStat._id}" >Show Batting Stats</button>
-        `
-
-        indexBattingStatsContainer.appendChild(div)
-    })
-
-
-
-}*/

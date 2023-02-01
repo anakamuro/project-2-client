@@ -30,8 +30,15 @@ const indexPitchingStatsContainer = document.querySelector('#index-pitchingStats
 const showPlayerContainer = document.querySelector('#show-player-container')
 const showBattingStatsContainer = document.querySelector('#show-battingStats-container')
 const showPitchingStatsContainer = document.querySelector('#show-pitchingStats-container')
+const logOutButton = document.querySelector('.logout')
 
-
+logOutButton.addEventListener('click', (event) => {
+	createPlayerForm.style.display = "none";
+	showPlayerContainer.style.display = "none";
+	createSigninForm .style.display = "block";
+	createSignupForm .style.display = "block";
+	}
+)
 // indexPlayer()
 //     .then(res => res.json())
 //     .then(res => {
@@ -79,6 +86,7 @@ createPlayerForm.addEventListener('submit', (event) => {
 				battingStats: {
 					playerId: data.player._id,
 					name: event.target['name'].value,
+					average: event.target['average'].value,
 					homerun: event.target['homerun'].value,
 					rbi: event.target['rbi'].value
 				}
@@ -98,6 +106,8 @@ createSigninForm.addEventListener('submit', (event) => {
 	event.preventDefault()
 	createPlayerForm.style.display = "block";
 	showPlayerContainer.style.display = "block";
+	createSignupForm .style.display = "none";
+	showPlayerContainer.style.display = "flex";
 	const signinData = {
 		credentials: {
 			email: event.target['email'].value,

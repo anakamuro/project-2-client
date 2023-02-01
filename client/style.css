@@ -15,16 +15,19 @@ body {
     display: none;
 }
 
+
 input {
-    height: 100px;
+    height: 70px;
     width: 80%;
     display: flex;
+    margin: 0 auto;
     align-items: center;
     justify-content: center;
     font-size: 40px;
 }
 .title {
   color: white;
+  margin-left: 10%;
 }
 
 h3 {
@@ -33,6 +36,9 @@ h3 {
     margin: 0 auto;
     padding-top: 5%;
 }
+h4 {
+  color: white;
+}
 .main-form {
   display: flex;
   align-items: center;
@@ -40,13 +46,18 @@ h3 {
   justify-content: center;
   background-color: brown;
   margin: 0 auto;
+  width: 300px;
 }
 
 .delete {
-  height: 100px;
+  height: 70px;
   width: 80%;
   margin: 0 auto;
-  font-size: 40px;
+  font-size: 30px;
+}
+.update {
+  font-size: 30px;
+  height: 70px;
 }
 main {
     margin: 5px;
@@ -94,8 +105,31 @@ ul {
   }
   
   #show-player-container {
+    display: flex;
+    flex-direction: row;
     display: none;
   }
-  
+  .sign {
+    margin-left: 10%;;
+  }
+  .signb {
+    background-color: blue;
+    color: white;
+    border-radius: 5%;
+}
+.p-info {
+  margin-left: 10%;
+}
+.createb {
+  background-color: green;
+  color: white;
+}
+.go {
+  color: white;
+  font-size: 30px;
+}
+.goto{
+  margin-top: 50px;
+}
   
   
