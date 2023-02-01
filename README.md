@@ -47,13 +47,13 @@ This project needs to be done using both front end and back end. One needs to ma
 
 ** Node
 
-# ** Rouess I used ** 
-Name	   Path	        Http Verb	                   Purpose
-Index	/players	      GET	                   Display all lists
-Show	/players/:id	  GET	                   Display one list
-Create	/players	      POST	                   Create one list
-Update	/players/:id	  PATCH	                   Update one list
-Delete	/players/:id	  DELETE	               Delete one list
+# ** Rouets I used ** 
+| Name	 |  Path	    |     Http Verb	       |        Purpose        |
+| Index	 | /players	    |     GET	           |        Display all lists |
+| Show	 | /players/:id	|     GET	           |        Display one list |
+|Create	 | /players	    |     POST	           |         Create one list |
+|Update	 | /players/:id |	  PATCH	           |        Update one list  |
+|Delete	 | /players/:id	|     DELETE	       |        Delete one list  |
 
 
 
