@@ -25,27 +25,27 @@ This project needs to be done using both front end and back end. One needs to ma
 
 # ** Technologies I used ** 
 
-** Javascript
+1. Javascript
 
-** HTML
+2.  HTML
 
-** CSS
+3.  CSS
 
-** Mongoose
+4.  Mongoose
 
-** Mongodb
+5.  Mongodb
 
-** Nodemon
+6.  Nodemon
 
-** Express
+7. Express
 
-** Cors
+8. Cors
 
-** Passport
+9. Passport
 
-** Passport-Jwt
+10. Passport-Jwt
 
-** Node
+11. Node
 
 # ** Rouets I used ** 
 | Name | Path | Http Verb | Purpose |
