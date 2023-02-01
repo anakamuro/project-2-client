@@ -21,7 +21,7 @@
 ---
 # ** Description ** 
 
-This project needs to be done using both front end and back end. One needs to make a schema, routes and express.js using mongoose o back end.  
+This project needs to be done using both front end and back end. One needs to make a schema, routes and express.js using mongoose o back end.  In the front end side, I used HTML, CSS, Javascript as usual, especially a lot of dom manipulation. 
 
 # ** Technologies I used ** 
 
