@@ -29,7 +29,7 @@ export const onShowPlayerSuccess = (players) => {
         <div><span class="title">Homerun: </span><input type="text" name="homerun" value="${player?.battingStats[0]?.homerun}" /></div>
         <div><span class="title">RBI: </span><input type="text" name="rbi" value="${player?.battingStats[0]?.rbi}" /></div>
         <h4>Pitching Stats</h4>
-        <div><span class="title">Win: </span><input type="integer" name="average" value="${ player?.pitchingStats[0]?.win}" /></div>
+        <div><span class="title">Win: </span><input type="integer" name="average" value="${player?.pitchingStats[0]?.win}" /></div>
         <div><span class="title">Loss: </span><input type="text" name="homerun" value="${player?.pitchingStats[0]?.loss}" /></div>
         <div><span class="title">ERA: </span><input type="text" name="rbi" value="${player?.pitchingStats[0]?.era}" /></div>
         
@@ -42,19 +42,6 @@ export const onShowPlayerSuccess = (players) => {
         </div>
     `
         showPlayerContainer.appendChild(div)
-
-
-
-        // document.querySelectorAll(".batStat-btn").forEach(batBtn=> {
-        //     batBtn.addEventListener("click", (e)=> {
-
-        //         console.log(e.target);
-        //          store.playerId= e.target.id
-        //          console.log(e.target.id)
-
-        //          console.log(store)
-        //     })
-        // })
     })
 }
 

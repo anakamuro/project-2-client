@@ -1,8 +1,5 @@
-import { indexPlayer, createPlayer, showPlayer, updatePlayer, deletePlayer, indexBattingStats, createBattingStats, showBattingStats, updateBattingStats, deleteBattingStats, indexPitchingStats, createPitchingStats, showPitchingStats, updatePitchingStats, deletePitchingStats, signin, signup } from './api.js'
+import { indexPlayer, createPlayer, showPlayer, updatePlayer, deletePlayer, createBattingStats, showBattingStats, updateBattingStats, deleteBattingStats, createPitchingStats, showPitchingStats, updatePitchingStats, deletePitchingStats, signin, signup } from './api.js'
 import {
-	//onIndexPlayerSuccess,
-	onIndexBattingStatsSuccess,
-	onIndexPitchingStatsSuccess,
 	onFailure,
 	onCreatePlayerSuccess,
 	onCreateBattingStatsSuccess,
@@ -53,31 +50,6 @@ Day.addEventListener('click', (event) => {
 	document.body.style.backgroundImage = "url('https://cdn.britannica.com/14/125714-050-429B61D6/wall-Green-Monster-Fenway-Park-Boston.jpg')";
 }
 )
-//indexPlayer()
-//   .then(res => res.json())
-//   .then(res => {
-//       console.log(res)
-//      // onIndexPlayerSuccess(res.players)
-//		onShowPlayerSuccess(res.players)
-//  })
-//     .catch(onFailure)
-
-// indexBattingStats()
-// 	.then(res => res.json())
-// 	.then(res => {
-// 		console.log(res)
-// 		onIndexBattingStatsSuccess(res.battingStats)
-// 	})
-// 	.catch(onFailure)
-
-// indexPitchingStats()
-// 	.then(res => res.json())
-// 	.then(res => {
-// 		console.log(res)
-// 		onIndexPitchingStatsSuccess(res.pitchingStats)
-// 	})
-// 	.catch(onFailure)
-
 
 createPlayerForm.addEventListener('submit', (event) => {
 	event.preventDefault()
@@ -91,8 +63,7 @@ createPlayerForm.addEventListener('submit', (event) => {
 		},
 	}
 
-	// console.log(characterData)
-	// .then(createBattingStats())
+
 	createPlayer(playerData)
 		.then((res) => res.json()).then((data) => {
 			console.log(data);
@@ -123,20 +94,7 @@ createPlayerForm.addEventListener('submit', (event) => {
 						})
 					})
 			})
-
-
-
-			// .then((data) => console.log(data))
-			// console.log('createBattingStats', createBattingStats)
 		}).catch(onFailure)
-
-
-
-
-
-
-
-
 })
 
 
@@ -163,15 +121,6 @@ createSigninForm.addEventListener('submit', (event) => {
 				console.log(player);
 			})
 		})
-
-		// .then((data) => console.log(data))
-		// .then((res) => onIndexPlayerSuccess(res.campaigns))
-		// .then(indexBattingStats)
-		// .then((res) => res.json())
-		// .then((res) => onIndexBattingStatsSuccess(res.battingStats))
-		// .then(indexPitchingStats)
-		// .then((res) => res.json())
-		// .then((res) => onIndexPitchingStatsSuccess(res.pitchgingStats))
 		.catch(onFailure)
 })
 
@@ -184,8 +133,6 @@ createSignupForm.addEventListener('submit', (event) => {
 			password: event.target['password'].value
 		},
 	}
-
-	// console.log(characterData)
 	signup(signupData)
 		.then(onSignupSuccess)
 		.catch(onFailure)
@@ -204,8 +151,6 @@ createBattingStatsForm.addEventListener('submit', (event) => {
 
 		},
 	}
-
-	// console.log(characterData)
 	createBattingStats(battingStatsData)
 		.then(onCreateBattingStatsSuccess)
 		.catch(onFailure)
@@ -223,7 +168,6 @@ createPitchingStatsForm.addEventListener('submit', (event) => {
 		},
 	}
 
-	// console.log(pitchingStatsData)
 	createPitchingStats(pitchingStatsData)
 		.then(onCreatePitchingStatsSuccess)
 		.catch(onFailure)
@@ -232,7 +176,6 @@ createPitchingStatsForm.addEventListener('submit', (event) => {
 
 indexPlayerContainer.addEventListener('click', (event) => {
 	const id = event.target.getAttribute('data-id')
-	// console.log(id)
 
 	if (!id) return
 
@@ -244,7 +187,6 @@ indexPlayerContainer.addEventListener('click', (event) => {
 
 indexBattingStatsContainer.addEventListener('click', (event) => {
 	const id = event.target.getAttribute('data-id')
-	// console.log(id)
 
 	if (!id) return
 
@@ -256,7 +198,6 @@ indexBattingStatsContainer.addEventListener('click', (event) => {
 
 indexPitchingStatsContainer.addEventListener('click', (event) => {
 	const id = event.target.getAttribute('data-id')
-	// console.log(id)
 
 	if (!id) return
 
@@ -283,7 +224,6 @@ showPlayerContainer.addEventListener('submit', (event) => {
 	if (!id) return
 
 	updatePlayer(playerData, id)
-		// this function (onUpdateCharacterSuccess) does not need anything to run. NO params
 		.then(onUpdatePlayerSuccess)
 		.catch(onFailure)
 })
@@ -305,7 +245,6 @@ showBattingStatsContainer.addEventListener('submit', (event) => {
 	if (!id) return
 
 	updateBattingStats(battingStatsData, id)
-		// this function (onUpdateCharacterSuccess) does not need anything to run. NO params
 		.then(onUpdateBattingStatsSuccess)
 		.catch(onFailure)
 })
@@ -328,7 +267,6 @@ showPitchingStatsContainer.addEventListener('submit', (event) => {
 	if (!id) return
 
 	updatePitchingStats(pitchingStatsData, id)
-		// this function (onUpdateCharacterSuccess) does not need anything to run. NO params
 		.then(onUpdatePitchingStatsSuccess)
 		.catch(onFailure)
 })
