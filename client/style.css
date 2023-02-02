@@ -1,47 +1,59 @@
 body {
   background-image: url("https://cdn.britannica.com/14/125714-050-429B61D6/wall-Green-Monster-Fenway-Park-Boston.jpg");
   background-color: #cccccc;
- }
- 
- h1 {
+}
+
+h1 {
   color: gold;
   text-align: center;
- }
- 
- 
- #create-player-form, #create-battingStats-form,  #create-pitchingStats-form{
-    display: flex;
-    flex-direction: column;
-    background-color: Blue;
-    position: relative;
-    top: 2000px;
-    display: none;
+}
+
+
+#create-player-form,
+#create-battingStats-form,
+#create-pitchingStats-form {
+  display: flex;
+  flex-direction: column;
+  background-color: Blue;
+  position: relative;
+  top: 1000px;
+  display: none;
 }
 
 
 input {
-    height: 70px;
-    width: 80%;
-    display: flex;
-    margin: 0 auto;
-    align-items: center;
-    justify-content: center;
-    font-size: 40px;
+  height: 70px;
+  width: 80%;
+  display: flex;
+  margin: 0 auto;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
 }
+.input {
+  width: 40%;
+  border-radius: 5%;
+}
+#authcontainer input {
+  width: 40%;
+}
+
 .title {
   color: white;
   margin-left: 10%;
 }
 
 h3 {
-    font-size: 40px;
-    color: white;
-    margin: 0 auto;
-    padding-top: 5%;
+  font-size: 40px;
+  color: white;
+  margin: 0 auto;
+  padding-top: 5%;
 }
+
 h4 {
   color: white;
 }
+
 .main-form {
   display: flex;
   align-items: center;
@@ -58,79 +70,88 @@ h4 {
   margin: 0 auto;
   font-size: 30px;
 }
+
 .update {
   font-size: 30px;
   height: 70px;
 }
+
 main {
-    margin: 5px;
+  margin: 5px;
 }
 
 .hide {
-    display: none;
+  display: none;
 }
 
-.content-container{
-    display: flex;
-    height: 250px;
+.content-container {
+  display: flex;
+  height: 250px;
 }
 
 .content-card {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-basis: 33%;
-    flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-basis: 33%;
+  flex-direction: column;
 }
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    text-decoration: none;
-    height: 70px;
-  }
-  li a {
-    text-decoration: none;
-    color: white;
-  }
 
-  nav {
-    background-color: black;
-  }
-  
-  #show-player-container {
-    width: 95%;
-    height: 500px;
-    display: flex;
-    flex-direction: row;
-    display: none;
-    flex-wrap: wrap;
-  }
-  .sign {
-    margin-left: 10%;;
-  }
-  .signb {
-    background-color: blue;
-    color: white;
-    border-radius: 5%;
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  text-decoration: none;
+  height: 70px;
 }
+
+li a {
+  text-decoration: none;
+  color: white;
+}
+
+nav {
+  background-color: black;
+}
+
+#show-player-container {
+  width: 95%;
+  height: 500px;
+  display: flex;
+  flex-direction: row;
+  display: none;
+  flex-wrap: wrap;
+}
+
+.sign {
+  margin-left: 30%;
+  ;
+}
+
+.signb {
+  background-color: blue;
+  color: white;
+  border-radius: 5%;
+}
+
 .p-info {
   margin-left: 10%;
 }
+
 .createb {
   background-color: green;
   color: white;
 }
+
 .go {
   color: white;
   font-size: 30px;
 }
-.goto{
+
+.goto {
   margin-top: 50px;
 }
-  
-  
