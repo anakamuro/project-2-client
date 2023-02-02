@@ -31,38 +31,52 @@ const showPlayerContainer = document.querySelector('#show-player-container')
 const showBattingStatsContainer = document.querySelector('#show-battingStats-container')
 const showPitchingStatsContainer = document.querySelector('#show-pitchingStats-container')
 const logOutButton = document.querySelector('.logout')
+const Day = document.querySelector('.day')
+const Night = document.querySelector('.night')
 
 logOutButton.addEventListener('click', (event) => {
 	createPlayerForm.style.display = "none";
 	showPlayerContainer.style.display = "none";
-	createSigninForm .style.display = "block";
-	createSignupForm .style.display = "block";
-	}
+	createSigninForm.style.display = "block";
+	createSignupForm.style.display = "block";
+
+}
 )
-// indexPlayer()
-//     .then(res => res.json())
-//     .then(res => {
-//         console.log(res)
-//         onIndexPlayerSuccess(res.players)
-// 		onShowPlayerSuccess(res.players)
-//     })
+Night.addEventListener('click', (event) => {
+	document.body.style.backgroundImage = "url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDWoOexS93QilrpJVvwt4wNAm-uuPD_HUyNw&usqp=CAU')";
+	document.body.style.backgroundSize = "cover";
+	document.body.style.backgroundPosition = "center";
+}
+)
+
+Day.addEventListener('click', (event) => {
+	document.body.style.backgroundImage = "url('https://cdn.britannica.com/14/125714-050-429B61D6/wall-Green-Monster-Fenway-Park-Boston.jpg')";
+}
+)
+//indexPlayer()
+//   .then(res => res.json())
+//   .then(res => {
+//       console.log(res)
+//      // onIndexPlayerSuccess(res.players)
+//		onShowPlayerSuccess(res.players)
+//  })
 //     .catch(onFailure)
 
-indexBattingStats()
-	.then(res => res.json())
-	.then(res => {
-		console.log(res)
-		onIndexBattingStatsSuccess(res.battingStats)
-	})
-	.catch(onFailure)
+// indexBattingStats()
+// 	.then(res => res.json())
+// 	.then(res => {
+// 		console.log(res)
+// 		onIndexBattingStatsSuccess(res.battingStats)
+// 	})
+// 	.catch(onFailure)
 
-indexPitchingStats()
-	.then(res => res.json())
-	.then(res => {
-		console.log(res)
-		onIndexPitchingStatsSuccess(res.pitchingStats)
-	})
-	.catch(onFailure)
+// indexPitchingStats()
+// 	.then(res => res.json())
+// 	.then(res => {
+// 		console.log(res)
+// 		onIndexPitchingStatsSuccess(res.pitchingStats)
+// 	})
+// 	.catch(onFailure)
 
 
 createPlayerForm.addEventListener('submit', (event) => {
@@ -78,8 +92,8 @@ createPlayerForm.addEventListener('submit', (event) => {
 	}
 
 	// console.log(characterData)
+	// .then(createBattingStats())
 	createPlayer(playerData)
-		// .then(createBattingStats())
 		.then((res) => res.json()).then((data) => {
 			console.log(data);
 			createBattingStats({
@@ -89,24 +103,49 @@ createPlayerForm.addEventListener('submit', (event) => {
 					average: event.target['average'].value,
 					homerun: event.target['homerun'].value,
 					rbi: event.target['rbi'].value
-				}
-			}).then((res) => res.json()).then((data) => console.log(data))
-		})
-		.then(onCreatePlayerSuccess).then(indexPlayer)
-		.then((res) => res.json()).then((data) => {
-			onShowPlayerSuccess(data.players)
-			data.players.map((player) => {
-				console.log(player);
+				},
+
+			}).then((res) => res.json()).then((data) => {
+				console.log("batting stat data", data);
+				createPitchingStats({
+					pitchingStats: {
+						playerId: data.player._id,
+						name: event.target['name'].value,
+						win: event.target['win'].value,
+						loss: event.target['loss'].value,
+						era: event.target['era'].value
+					},
+				}).then((res) => res.json()).then((data) => console.log(data)).then(onCreatePlayerSuccess).then(indexPlayer)
+					.then((res) => res.json()).then((data) => {
+						onShowPlayerSuccess(data.players)
+						data.players.map((player) => {
+							console.log(player);
+						})
+					})
 			})
-		})
-		.catch(onFailure)
+
+
+
+			// .then((data) => console.log(data))
+			// console.log('createBattingStats', createBattingStats)
+		}).catch(onFailure)
+
+
+
+
+
+
+
+
 })
+
 
 createSigninForm.addEventListener('submit', (event) => {
 	event.preventDefault()
 	createPlayerForm.style.display = "block";
 	showPlayerContainer.style.display = "block";
-	createSignupForm .style.display = "none";
+	createSignupForm.style.display = "none";
+	createSigninForm.style.display = "none";
 	showPlayerContainer.style.display = "flex";
 	const signinData = {
 		credentials: {

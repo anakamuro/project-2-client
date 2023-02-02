@@ -3,7 +3,10 @@ body {
   background-color: #cccccc;
  }
  
- 
+ h1 {
+  color: gold;
+  text-align: center;
+ }
  
  
  #create-player-form, #create-battingStats-form,  #create-pitchingStats-form{
@@ -100,14 +103,12 @@ ul {
   }
   
   #show-player-container {
-    width: 500px;
+    width: 95%;
     height: 500px;
-  }
-  
-  #show-player-container {
     display: flex;
     flex-direction: row;
     display: none;
+    flex-wrap: wrap;
   }
   .sign {
     margin-left: 10%;;

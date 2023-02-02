@@ -14,7 +14,7 @@ const createSigninForm = document.querySelector('#signin-form')
 
 export const onShowPlayerSuccess = (players) => {
     console.log(players, 'players')
-    players.forEach(player => {
+    players?.forEach(player => {
         const div = document.createElement('div')
         div.innerHTML = `
         <div id="forms">
@@ -28,8 +28,12 @@ export const onShowPlayerSuccess = (players) => {
         <div><span class="title">Average: </span><input type="integer" name="average" value="${player?.battingStats[0]?.average}" /></div>
         <div><span class="title">Homerun: </span><input type="text" name="homerun" value="${player?.battingStats[0]?.homerun}" /></div>
         <div><span class="title">RBI: </span><input type="text" name="rbi" value="${player?.battingStats[0]?.rbi}" /></div>
-
+        <h4>Pitching Stats</h4>
+        <div><span class="title">Win: </span><input type="integer" name="average" value="${ player?.pitchingStats[0]?.win}" /></div>
+        <div><span class="title">Loss: </span><input type="text" name="homerun" value="${player?.pitchingStats[0]?.loss}" /></div>
+        <div><span class="title">ERA: </span><input type="text" name="rbi" value="${player?.pitchingStats[0]?.era}" /></div>
         
+      
 
 
             <input class="update" type="submit" value="Update Player" />
@@ -89,7 +93,10 @@ export const onIndexPitchingStatsSuccess = (pitchingStats) => {
     pitchingStats.forEach(pitchingStat => {
         const div = document.createElement('div')
         div.innerHTML = `
-            <h3>${pitchingStat.name}  ${pitchingStat.era}</h3>
+            <p>${pitchingStat.name}</p>  
+            <p>${pitchingStat.win}</p>
+            <p>${pitchingStat.loss}</p>
+            <p>${pitchingStat.era}</p>
             <button data-id="${pitchingStat._id}" >Show Batting Stats</button>
         `
 
