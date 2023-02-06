@@ -58,6 +58,7 @@
         <div class="goto"><a class="go" href="#forms">Go To Data Collection</a></div>
     </form>
 
+    <!-- This div has the same `id` as the one on 42. `id`s have to be unique so change either this one or the one above to a unique name -->
     <div id="message-container"></div>
     <div id="index-battingStats-container"></div>
     <div id="show-battingStats-container"></div>
@@ -70,6 +71,7 @@
         <input type="submit" value="Create Batting Stats">
     </form>
 
+    <!-- Same comment as the one above on line 61. `id`s are unique so rename this one -->
     <div id="message-container"></div>
     <div id="index-pitchingStats-container"></div>
     <div id="show-pitchingStats-container"></div>
@@ -84,13 +86,16 @@
 
     <div id="index-container" class="hide">
         <h2>Player</h2>
+        <!-- Same `id` name is also being used on line 43. Change this one or that one to be unique -->
         <div id="index-player-container" class="content-container"></div>
         <h2>Batting Stats</h2>
+        <!-- Same `id` name is being used on line 63. Change this one or that one to be unique. Also naming conventions for `id`s and `class`s in HTML is with a `-` dash in between each word. This `id` should be `index-battig-stats-container` -->
         <div id="index-battingStats-container" class="content-container"></div>
         <h2>Pitching Stats</h2>
         <div id="index-pitchingStats-container" class="content-container"></div>
     </div>
 
+    <!-- Same comment as the others. These `id`s are being used elsewhere in your HTML file. `id`s need to be unique so change these here or the ones above that are the same -->
     <div class="hide container" id="show-player-container"></div>
     <div class="hide container" id="show-battingStats-container"></div>
     <div class="hide container" id="show-pitchingStats-container"></div>
@@ -101,6 +106,7 @@
 
 </body>
 
+<!-- If you add `defer` as an attribute to this script element you are able to put this as a child of the head element -->
 <script type="module" src="./scripts/app.js"></script>
 
 </html>
