@@ -1,4 +1,20 @@
-import { indexPlayer, createPlayer, showPlayer, updatePlayer, deletePlayer, createBattingStats, showBattingStats, updateBattingStats, deleteBattingStats, createPitchingStats, showPitchingStats, updatePitchingStats, deletePitchingStats, signin, signup } from './api.js'
+import {
+	indexPlayer,
+	createPlayer,
+	showPlayer,
+	updatePlayer,
+	deletePlayer,
+	createBattingStats,
+	showBattingStats,
+	updateBattingStats,
+	deleteBattingStats,
+	createPitchingStats,
+	showPitchingStats,
+	updatePitchingStats,
+	deletePitchingStats,
+	signin,
+	signup,
+} from './api.js'
 import {
 	onFailure,
 	onCreatePlayerSuccess,
@@ -14,7 +30,7 @@ import {
 	onDeleteBattingStatsSuccess,
 	onDeletePitchingStatsSuccess,
 	onSigninSuccess,
-	onSignupSuccess
+	onSignupSuccess,
 } from './ui.js'
 const createSigninForm = document.querySelector('#signin-form')
 const createSignupForm = document.querySelector('#signup-form')
@@ -28,28 +44,31 @@ const showPlayerContainer = document.querySelector('#show-player-container')
 const showBattingStatsContainer = document.querySelector('#show-battingStats-container')
 const showPitchingStatsContainer = document.querySelector('#show-pitchingStats-container')
 const logOutButton = document.querySelector('.logout')
+// To follow JavaScript convention change these variables over to lower case
 const Day = document.querySelector('.day')
 const Night = document.querySelector('.night')
 
+// Remove `event` from params because you are not using it in the function scope
 logOutButton.addEventListener('click', (event) => {
-	createPlayerForm.style.display = "none";
-	showPlayerContainer.style.display = "none";
-	createSigninForm.style.display = "block";
-	createSignupForm.style.display = "block";
+	createPlayerForm.style.display = 'none'
+	showPlayerContainer.style.display = 'none'
+	createSigninForm.style.display = 'block'
+	createSignupForm.style.display = 'block'
+})
 
-}
-)
+// Remove `event` from params because you are not using it in the function scope
 Night.addEventListener('click', (event) => {
-	document.body.style.backgroundImage = "url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDWoOexS93QilrpJVvwt4wNAm-uuPD_HUyNw&usqp=CAU')";
-	document.body.style.backgroundSize = "cover";
-	document.body.style.backgroundPosition = "center";
-}
-)
+	document.body.style.backgroundImage =
+		"url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDWoOexS93QilrpJVvwt4wNAm-uuPD_HUyNw&usqp=CAU')"
+	document.body.style.backgroundSize = 'cover'
+	document.body.style.backgroundPosition = 'center'
+})
 
+// Remove `event` from params because you are not using it in the function scope
 Day.addEventListener('click', (event) => {
-	document.body.style.backgroundImage = "url('https://cdn.britannica.com/14/125714-050-429B61D6/wall-Green-Monster-Fenway-Park-Boston.jpg')";
-}
-)
+	document.body.style.backgroundImage =
+		"url('https://cdn.britannica.com/14/125714-050-429B61D6/wall-Green-Monster-Fenway-Park-Boston.jpg')"
+})
 
 createPlayerForm.addEventListener('submit', (event) => {
 	event.preventDefault()
@@ -63,62 +82,78 @@ createPlayerForm.addEventListener('submit', (event) => {
 		},
 	}
 
-
+	// I reformated this promise chain to be in line with what we expect from JavaScript syntax. Before you had multiple `.then`s on a single line
 	createPlayer(playerData)
-		.then((res) => res.json()).then((data) => {
-			console.log(data);
+		.then((res) => res.json())
+		.then((data) => {
+			// Remove console log from finished project
+			console.log(data)
 			createBattingStats({
 				battingStats: {
 					playerId: data.player._id,
 					name: event.target['name'].value,
 					average: event.target['average'].value,
 					homerun: event.target['homerun'].value,
-					rbi: event.target['rbi'].value
+					rbi: event.target['rbi'].value,
 				},
-
-			}).then((res) => res.json()).then((data) => {
-				console.log("batting stat data", data);
-				createPitchingStats({
-					pitchingStats: {
-						playerId: data.player._id,
-						name: event.target['name'].value,
-						win: event.target['win'].value,
-						loss: event.target['loss'].value,
-						era: event.target['era'].value
-					},
-				}).then((res) => res.json()).then((data) => console.log(data)).then(onCreatePlayerSuccess).then(indexPlayer)
-					.then((res) => res.json()).then((data) => {
-						onShowPlayerSuccess(data.players)
-						data.players.map((player) => {
-							console.log(player);
-						})
-					})
 			})
-		}).catch(onFailure)
+				.then((res) => res.json())
+				.then((data) => {
+					// Remove console log from finished project
+					console.log('batting stat data', data)
+					createPitchingStats({
+						pitchingStats: {
+							playerId: data.player._id,
+							name: event.target['name'].value,
+							win: event.target['win'].value,
+							loss: event.target['loss'].value,
+							era: event.target['era'].value,
+						},
+					})
+						.then((res) => res.json())
+						// Remove console log from finished project
+						.then((data) => console.log(data))
+						.then(onCreatePlayerSuccess)
+						.then(indexPlayer)
+						.then((res) => res.json())
+						.then((data) => {
+							onShowPlayerSuccess(data.players)
+							data.players.map((player) => {
+								// Remove console logs from finished project
+								console.log(player)
+							})
+						})
+				})
+		})
+		.catch(onFailure)
 })
-
 
 createSigninForm.addEventListener('submit', (event) => {
 	event.preventDefault()
-	createPlayerForm.style.display = "block";
-	showPlayerContainer.style.display = "block";
-	createSignupForm.style.display = "none";
-	createSigninForm.style.display = "none";
-	showPlayerContainer.style.display = "flex";
+
+	createPlayerForm.style.display = 'block'
+	showPlayerContainer.style.display = 'block'
+	createSignupForm.style.display = 'none'
+	createSigninForm.style.display = 'none'
+	showPlayerContainer.style.display = 'flex'
+
 	const signinData = {
 		credentials: {
 			email: event.target['email'].value,
-			password: event.target['password'].value
+			password: event.target['password'].value,
 		},
 	}
+
 	signin(signinData)
 		.then((res) => res.json())
 		.then((res) => onSigninSuccess(res.token))
 		.then(indexPlayer)
-		.then((res) => res.json()).then((data) => {
+		.then((res) => res.json())
+		.then((data) => {
 			onShowPlayerSuccess(data.players)
 			data.players.map((player) => {
-				console.log(player);
+				// Remove console logs from finished project
+				console.log(player)
 			})
 		})
 		.catch(onFailure)
@@ -130,14 +165,14 @@ createSignupForm.addEventListener('submit', (event) => {
 	const signupData = {
 		credentials: {
 			email: event.target['email'].value,
-			password: event.target['password'].value
+			password: event.target['password'].value,
 		},
 	}
+
 	signup(signupData)
 		.then(onSignupSuccess)
 		.catch(onFailure)
 })
-
 
 createBattingStatsForm.addEventListener('submit', (event) => {
 	event.preventDefault()
@@ -148,9 +183,9 @@ createBattingStatsForm.addEventListener('submit', (event) => {
 			average: event.target['average'].value,
 			homerun: event.target['homerun'].value,
 			rbi: event.target['rbi'].value,
-
 		},
 	}
+
 	createBattingStats(battingStatsData)
 		.then(onCreateBattingStatsSuccess)
 		.catch(onFailure)
@@ -164,7 +199,7 @@ createPitchingStatsForm.addEventListener('submit', (event) => {
 			name: event.target['name'].value,
 			win: event.target['win'].value,
 			loss: event.target['loss'].value,
-			era: event.target['era'].value
+			era: event.target['era'].value,
 		},
 	}
 
@@ -172,7 +207,6 @@ createPitchingStatsForm.addEventListener('submit', (event) => {
 		.then(onCreatePitchingStatsSuccess)
 		.catch(onFailure)
 })
-
 
 indexPlayerContainer.addEventListener('click', (event) => {
 	const id = event.target.getAttribute('data-id')
@@ -248,7 +282,6 @@ showBattingStatsContainer.addEventListener('submit', (event) => {
 		.then(onUpdateBattingStatsSuccess)
 		.catch(onFailure)
 })
-
 
 showPitchingStatsContainer.addEventListener('submit', (event) => {
 	event.preventDefault()

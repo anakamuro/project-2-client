@@ -1,1 +1,2 @@
+// Change `let` to `const` here. Since the name of the object `store` is never going to change and we are not going to reassign `store` to anything else so have it declared with a `const`. Even though the contents of `store` changes the actual object declaration does not. 
 export let store ={};

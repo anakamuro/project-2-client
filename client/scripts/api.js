@@ -1,5 +1,5 @@
 import { store } from './store.js'
-
+// Wonderful job on this file. Only feedback would be to add comments and group together your api calls on what resource they handle. Having all the batting calls, the pitching calls, and the player calls together with comments separating the sections will make coming back to this project so much easier. 
 
 export const indexPlayer = () => {
     return fetch(`http://localhost:8000/players`, {
